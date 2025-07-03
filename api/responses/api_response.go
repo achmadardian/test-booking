@@ -4,12 +4,15 @@ import (
 	"encoding/json"
 	"log/slog"
 	"net/http"
+
+	"github.com/achmadardian/test-booking-api/pagination"
 )
 
 type ApiResponse struct {
-	Message string `json:"message"`
-	Data    any    `json:"data,omitempty"`
-	Errors  any    `json:"errors,omitempty"`
+	Message    string                `json:"message"`
+	Data       any                   `json:"data,omitempty"`
+	Pagination pagination.Pagination `json:"pagination,omitempty"`
+	Errors     any                   `json:"errors,omitempty"`
 }
 
 const (
@@ -51,6 +54,21 @@ func Ok(w http.ResponseWriter, data any, message ...string) {
 	res := ApiResponse{
 		Message: msg,
 		Data:    data,
+	}
+
+	writeJSON(w, http.StatusOK, res)
+}
+
+func OkPage(w http.ResponseWriter, data any, p pagination.Pagination, message ...string) {
+	msg := MsgOk
+	if len(message) > 0 {
+		msg = message[0]
+	}
+
+	res := ApiResponse{
+		Message:    msg,
+		Data:       data,
+		Pagination: p,
 	}
 
 	writeJSON(w, http.StatusOK, res)
