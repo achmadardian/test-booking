@@ -1,0 +1,40 @@
+CREATE TABLE IF NOT EXISTS nationality (
+    nationality_id SERIAL PRIMARY KEY NOT NULL,
+    nationality_name VARCHAR(50) NOT NULL,
+    nationality_code CHAR(2) NOT NUll,
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    deleted_at TIMESTAMPTZ
+);
+
+INSERT INTO nationality (nationality_name, nationality_code)
+VALUES
+    ('Indonesia', 'ID'),
+    ('United States', 'US'),
+    ('United Kingdom', 'GB'),
+    ('Canada', 'CA'),
+    ('Australia', 'AU'),
+    ('Germany', 'DE'),
+    ('France', 'FR'),
+    ('Japan', 'JP'),
+    ('China', 'CN'),
+    ('South Korea', 'KR'),
+    ('India', 'IN'),
+    ('Singapore', 'SG'),
+    ('Malaysia', 'MY'),
+    ('Thailand', 'TH'),
+    ('Vietnam', 'VN'),
+    ('Philippines', 'PH'),
+    ('Brazil', 'BR'),
+    ('Mexico', 'MX'),
+    ('South Africa', 'ZA'),
+    ('Russia', 'RU'),
+    ('Saudi Arabia', 'SA'),
+    ('United Arab Emirates', 'AE'),
+    ('Netherlands', 'NL'),
+    ('Switzerland', 'CH'),
+    ('Sweden', 'SE'),
+    ('Italy', 'IT'),
+    ('Spain', 'ES'),
+    ('Turkey', 'TR'),
+    ('New Zealand', 'NZ');
