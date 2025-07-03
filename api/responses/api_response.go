@@ -9,10 +9,10 @@ import (
 )
 
 type ApiResponse struct {
-	Message    string                `json:"message"`
-	Data       any                   `json:"data,omitempty"`
-	Pagination pagination.Pagination `json:"pagination,omitempty"`
-	Errors     any                   `json:"errors,omitempty"`
+	Message    string                 `json:"message"`
+	Data       any                    `json:"data,omitempty"`
+	Pagination *pagination.Pagination `json:"pagination,omitempty"`
+	Errors     any                    `json:"errors,omitempty"`
 }
 
 const (
@@ -68,7 +68,7 @@ func OkPage(w http.ResponseWriter, data any, p pagination.Pagination, message ..
 	res := ApiResponse{
 		Message:    msg,
 		Data:       data,
-		Pagination: p,
+		Pagination: &p,
 	}
 
 	writeJSON(w, http.StatusOK, res)
