@@ -90,10 +90,11 @@ func (c *CustomerHandler) CreateCustomer(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	customer, err := c.service.Create(r.Context(), req)
+	customer, families, err := c.service.Create(r.Context(), req)
 	if err != nil {
 		c.logger.Error("failed to create customer",
 			slog.String("handler", "CustomerHandler.CreateCustomer"),
+			slog.Any("body", req),
 			slog.Any("error", err),
 		)
 
@@ -101,7 +102,34 @@ func (c *CustomerHandler) CreateCustomer(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	responses.Created(w, customer)
+	var familiesRes []responses.FamilyListResponse
+	for _, f := range families {
+		family := responses.FamilyListResponse{
+			FLID:       f.FLID,
+			CSTID:      f.CSTID,
+			FLRelation: f.FLRelation,
+			FLName:     f.FLName,
+			FLDOB:      f.FLDOB.Format("2006-01-02"),
+		}
+
+		familiesRes = append(familiesRes, family)
+	}
+
+	resMap := responses.CreateCustomerResponse{
+		CstID:       customer.CstID,
+		CstName:     customer.CstName,
+		CstDOB:      customer.CstDOB.Format("2006-01-02"),
+		CstPhoneNum: customer.CstPhoneNum,
+		CstEmail:    customer.CstEmail,
+		Nationality: responses.NationalityResponse{
+			NationalityID:   customer.Nationality.NationalityID,
+			NationalityName: customer.Nationality.NationalityName,
+			NationalityCode: customer.Nationality.NationalityCode,
+		},
+		Families: familiesRes,
+	}
+
+	responses.Created(w, resMap)
 }
 
 func (c *CustomerHandler) UpdateCustomerByID(w http.ResponseWriter, r *http.Request) {

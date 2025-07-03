@@ -50,3 +50,13 @@ func (c *CustomerResponse) MapRow(data *models.Customer) CustomerResponse {
 
 	return customers
 }
+
+type CreateCustomerResponse struct {
+	CstID       int                  `json:"cst_id"`
+	CstName     string               `json:"cst_name"`
+	CstDOB      string               `json:"cst_dob"`
+	CstPhoneNum string               `json:"cst_phone_num"`
+	CstEmail    string               `json:"cst_email"`
+	Nationality NationalityResponse  `json:"nationality"`
+	Families    []FamilyListResponse `json:"families"`
+}

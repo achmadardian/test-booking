@@ -2,6 +2,7 @@ package services
 
 import (
 	"context"
+	"database/sql"
 	"errors"
 	"fmt"
 	"time"
@@ -14,12 +15,16 @@ import (
 )
 
 type CustomerService struct {
-	repo *repositories.CustomerRepository
+	repo  *repositories.CustomerRepository
+	fRepo *repositories.FamilyListRepository
+	DB    *sql.DB
 }
 
-func NewCustomerService(repo *repositories.CustomerRepository) *CustomerService {
+func NewCustomerService(repo *repositories.CustomerRepository, f *repositories.FamilyListRepository, DB *sql.DB) *CustomerService {
 	return &CustomerService{
-		repo: repo,
+		repo:  repo,
+		fRepo: f,
+		DB:    DB,
 	}
 }
 
@@ -45,26 +50,56 @@ func (c *CustomerService) GetByID(ctx context.Context, cstID int) (*models.Custo
 	return customer, nil
 }
 
-func (c *CustomerService) Create(ctx context.Context, req requests.CreateCustomerRequest) (*models.Customer, error) {
-	time, err := time.Parse("2006-01-02", req.CstDOB)
+func (c *CustomerService) Create(ctx context.Context, req requests.CreateCustomerRequest) (*models.Customer, []models.FamilyList, error) {
+	tx, err := c.DB.BeginTx(ctx, nil)
 	if err != nil {
-		return nil, fmt.Errorf("CustomerService.Create: failed to convert date of birth: %w", err)
+		return nil, nil, fmt.Errorf("CustomerService.Create: failed to begin transaction: %w", err)
+	}
+	defer tx.Rollback()
+
+	cstDOB, err := time.Parse("2006-01-02", req.CstDOB)
+	if err != nil {
+		return nil, nil, fmt.Errorf("CustomerService.Create: failed to convert date of birth customer: %w", err)
 	}
 
 	cst := models.Customer{
 		NationalityId: req.NationalityID,
 		CstName:       req.CstName,
-		CstDOB:        time,
+		CstDOB:        cstDOB,
 		CstPhoneNum:   req.CstPhoneNum,
 		CstEmail:      req.CstEmail,
 	}
 
-	saveCst, err := c.repo.Create(ctx, cst)
+	saveCst, err := c.repo.Create(ctx, tx, cst)
 	if err != nil {
-		return nil, fmt.Errorf("CustomerService.Create: failed to insert: %w", err)
+		return nil, nil, fmt.Errorf("CustomerService.Create: failed to insert: %w", err)
 	}
 
-	return saveCst, nil
+	var families []models.FamilyList
+	for _, f := range req.Families {
+		fmlDOB, err := time.Parse("2006-01-02", f.FLDOB)
+		if err != nil {
+			return nil, nil, fmt.Errorf("CustomerService.Create: failed to convert date of birth family: %w", err)
+		}
+
+		fml := models.FamilyList{
+			CSTID:      f.CstID,
+			FLRelation: f.FLRelation,
+			FLName:     f.FLName,
+			FLDOB:      fmlDOB,
+		}
+
+		saveFml, err := c.fRepo.Create(ctx, tx, fml)
+		if err != nil {
+			return nil, nil, fmt.Errorf("CustomerService.Create: failed to insert family: %w", err)
+		}
+
+		families = append(families, *saveFml)
+	}
+
+	tx.Commit()
+
+	return saveCst, families, nil
 }
 
 func (c *CustomerService) UpdateByID(ctx context.Context, cstID int, req requests.UpdateCustomerRequest) (*models.Customer, error) {

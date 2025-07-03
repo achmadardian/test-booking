@@ -109,7 +109,12 @@ func (c *CustomerRepository) GetByID(ctx context.Context, cstID int) (*models.Cu
 	return &cst, nil
 }
 
-func (c *CustomerRepository) Create(ctx context.Context, cst models.Customer) (*models.Customer, error) {
+func (c *CustomerRepository) Create(ctx context.Context, tx TX, cst models.Customer) (*models.Customer, error) {
+	DB := tx
+	if DB == nil {
+		DB = c.DB
+	}
+
 	query := `INSERT INTO customer (nationality_id, cst_name, cst_dob, cst_phone_num, cst_email)
 	VALUES ($1, $2, $3, $4, $5)
 	RETURNING cst_id, nationality_id, cst_name, cst_dob, cst_phone_num, cst_email`

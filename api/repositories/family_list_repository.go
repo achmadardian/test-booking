@@ -9,6 +9,10 @@ import (
 	"github.com/achmadardian/test-booking-api/pagination"
 )
 
+type TX interface {
+	QueryRowContext(ctx context.Context, query string, args ...any) *sql.Row
+}
+
 type FamilyListRepository struct {
 	DB *sql.DB
 }
@@ -71,12 +75,17 @@ func (f *FamilyListRepository) GetByID(ctx context.Context, familyID int) (*mode
 	return &family, nil
 }
 
-func (f *FamilyListRepository) Create(ctx context.Context, fl models.FamilyList) (*models.FamilyList, error) {
+func (f *FamilyListRepository) Create(ctx context.Context, tx TX, fl models.FamilyList) (*models.FamilyList, error) {
+	DB := tx
+	if DB == nil {
+		DB = f.DB
+	}
+
 	query := `INSERT INTO family_list (cst_id, fl_relation, fl_name, fl_dob)
 	VALUES ($1, $2, $3, $4)
 	RETURNING fl_id, cst_id, fl_relation, fl_name, fl_dob`
 
-	row := f.DB.QueryRowContext(ctx, query, fl.CSTID, fl.FLRelation, fl.FLName, fl.FLDOB)
+	row := DB.QueryRowContext(ctx, query, fl.CSTID, fl.FLRelation, fl.FLName, fl.FLDOB)
 	if err := row.Scan(&fl.FLID, &fl.CSTID, &fl.FLRelation, &fl.FLName, &fl.FLDOB); err != nil {
 		return nil, fmt.Errorf("FamilyListRepository.Create: failed to insert: %w", err)
 	}

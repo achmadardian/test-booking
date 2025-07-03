@@ -19,14 +19,14 @@ func NewRoute(logger *slog.Logger, DB *sql.DB) http.Handler {
 	nationRepo := repositories.NewNationalityRepository(DB)
 	nationSvc := services.NewNationalityService(nationRepo)
 	nationHandl := handlers.NewNationalityHandler(logger, nationSvc)
-	// customer
-	cstRepo := repositories.NewCustomerRepository(DB)
-	cstSvc := services.NewCustomerService(cstRepo)
-	cstHandl := handlers.NewCustomerHandler(logger, cstSvc)
 	// families
 	FLRepo := repositories.NewFamilyListRepository(DB)
 	FLSvc := services.NewFamilyService(FLRepo)
 	FlHandl := handlers.NewFamilyListHandler(logger, FLSvc)
+	// customer
+	cstRepo := repositories.NewCustomerRepository(DB)
+	cstSvc := services.NewCustomerService(cstRepo, FLRepo, DB)
+	cstHandl := handlers.NewCustomerHandler(logger, cstSvc)
 
 	// middleware
 	middlewares.SetLogger(logger)

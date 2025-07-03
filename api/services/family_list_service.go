@@ -58,7 +58,7 @@ func (f *FamilyListService) Create(ctx context.Context, req requests.CreateFamil
 		FLDOB:      dob,
 	}
 
-	save, err := f.repo.Create(ctx, family)
+	save, err := f.repo.Create(ctx, nil, family)
 	if err != nil {
 		return nil, fmt.Errorf("FamilyListService.Create: failed to insert: %w", err)
 	}
