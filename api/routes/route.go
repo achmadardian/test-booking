@@ -23,6 +23,10 @@ func NewRoute(logger *slog.Logger, DB *sql.DB) http.Handler {
 	cstRepo := repositories.NewCustomerRepository(DB)
 	cstSvc := services.NewCustomerService(cstRepo)
 	cstHandl := handlers.NewCustomerHandler(logger, cstSvc)
+	// families
+	FLRepo := repositories.NewFamilyListRepository(DB)
+	FLSvc := services.NewFamilyService(FLRepo)
+	FlHandl := handlers.NewFamilyListHandler(logger, FLSvc)
 
 	// middleware
 	middlewares.SetLogger(logger)
@@ -46,6 +50,13 @@ func NewRoute(logger *slog.Logger, DB *sql.DB) http.Handler {
 	customer.HandleFunc("", cstHandl.CreateCustomer).Methods(http.MethodPost)
 	customer.HandleFunc("/{customer_id}", cstHandl.UpdateCustomerByID).Methods(http.MethodPatch)
 	customer.HandleFunc("/{customer_id}", cstHandl.DeleteCustomerByID).Methods(http.MethodDelete)
+	// familiy
+	families := api.PathPrefix("/families").Subrouter().StrictSlash(true)
+	families.HandleFunc("", FlHandl.GetAllFamilies).Methods(http.MethodGet)
+	families.HandleFunc("/{family_id}", FlHandl.GetFamilyByID).Methods(http.MethodGet)
+	families.HandleFunc("", FlHandl.CreateFamily).Methods(http.MethodPost)
+	families.HandleFunc("/{family_id}", FlHandl.UpdateFamilyByID).Methods(http.MethodPatch)
+	families.HandleFunc("/{family_id}", FlHandl.DeleteFamilyByID).Methods(http.MethodDelete)
 
 	return r
 }
