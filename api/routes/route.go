@@ -47,6 +47,7 @@ func NewRoute(logger *slog.Logger, DB *sql.DB) http.Handler {
 	customer := api.PathPrefix("/customers").Subrouter().StrictSlash(true)
 	customer.HandleFunc("", cstHandl.GetAllCustomerWithRelations).Methods(http.MethodGet)
 	customer.HandleFunc("/{customer_id}", cstHandl.GetCustomerByIDWithRelations).Methods(http.MethodGet)
+	customer.HandleFunc("/{customer_id}/families", cstHandl.GetAllFamiliesByCustomerID).Methods(http.MethodGet)
 	customer.HandleFunc("", cstHandl.CreateCustomer).Methods(http.MethodPost)
 	customer.HandleFunc("/{customer_id}", cstHandl.UpdateCustomerByID).Methods(http.MethodPatch)
 	customer.HandleFunc("/{customer_id}", cstHandl.DeleteCustomerByID).Methods(http.MethodDelete)

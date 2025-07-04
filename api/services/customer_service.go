@@ -37,6 +37,15 @@ func (c *CustomerService) GetAll(ctx context.Context, p pagination.Pagination) (
 	return customers, page, nil
 }
 
+func (c *CustomerService) GetAllFamiliesByCustomerID(ctx context.Context, cstID int) ([]models.FamilyList, error) {
+	families, err := c.fRepo.GetAllByCustomerID(ctx, cstID)
+	if err != nil {
+		return nil, fmt.Errorf("CustomerService.GetAllFamiliesByCustomerID: failed to fetch: %w", err)
+	}
+
+	return families, nil
+}
+
 func (c *CustomerService) GetByID(ctx context.Context, cstID int) (*models.Customer, error) {
 	customer, err := c.repo.GetByID(ctx, cstID)
 	if err != nil {

@@ -62,6 +62,32 @@ func (f *FamilyListRepository) GetAll(ctx context.Context, p pagination.Paginati
 	return families, page, nil
 }
 
+func (f *FamilyListRepository) GetAllByCustomerID(ctx context.Context, cstID int) ([]models.FamilyList, error) {
+	var families []models.FamilyList
+
+	query := `SELECT fl_id, cst_id, fl_relation, fl_name, fl_dob 
+	FROM family_list 
+	WHERE cst_id = $1 AND deleted_at IS NULL 
+	ORDER BY fl_id ASC`
+
+	rows, err := f.DB.QueryContext(ctx, query, cstID)
+	if err != nil {
+		return nil, fmt.Errorf("FamilyListRepository.GetAllByCustomerID: failed to query select: %w", err)
+	}
+
+	for rows.Next() {
+		var family models.FamilyList
+
+		if err := rows.Scan(&family.FLID, &family.CSTID, &family.FLRelation, &family.FLName, &family.FLDOB); err != nil {
+			return nil, fmt.Errorf("FamilyListRepository.GetAllByCustomerID: failed to scan: %w", err)
+		}
+
+		families = append(families, family)
+	}
+
+	return families, nil
+}
+
 func (f *FamilyListRepository) GetByID(ctx context.Context, familyID int) (*models.FamilyList, error) {
 	var family models.FamilyList
 
