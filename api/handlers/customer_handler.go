@@ -47,6 +47,37 @@ func (c *CustomerHandler) GetAllCustomerWithRelations(w http.ResponseWriter, r *
 	responses.OkPage(w, mapRes, page)
 }
 
+func (c *CustomerHandler) GetAllFamiliesByCustomerID(w http.ResponseWriter, r *http.Request) {
+	param := mux.Vars(r)
+	if param["customer_id"] == "" {
+		responses.BadRequest(w)
+		return
+	}
+
+	cstID, err := strconv.Atoi(param["customer_id"])
+	if err != nil {
+		responses.BadRequest(w, "invalid customer_id param")
+		return
+	}
+
+	families, err := c.service.GetAllFamiliesByCustomerID(r.Context(), cstID)
+	if err != nil {
+		c.logger.Error("failed to fetch all families by customer id",
+			slog.String("handler", "CustomerHandler.GetAllFamiliesByCustomerID"),
+			slog.Any("error", err),
+		)
+
+		responses.InternalServerError(w)
+		return
+	}
+
+	res := responses.FamilyListResponse{}
+	mapRes := res.Map(families)
+
+	responses.Ok(w, mapRes)
+
+}
+
 func (c *CustomerHandler) GetCustomerByIDWithRelations(w http.ResponseWriter, r *http.Request) {
 	param := mux.Vars(r)
 	if param["customer_id"] == "" {

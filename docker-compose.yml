@@ -58,6 +58,29 @@ services:
       timeout: 5s
       retries: 5
 
+  web:
+    build:
+      context: ./web
+    volumes:
+      - ./web:/var/www
+    networks:
+      - network
+    depends_on:
+      - api
+      - postgres
+  
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./web:/var/www
+      - ./web/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - web
+    networks:
+      - network
+
 networks:
   network:
 
