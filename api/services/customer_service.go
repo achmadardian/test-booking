@@ -92,7 +92,7 @@ func (c *CustomerService) Create(ctx context.Context, req requests.CreateCustome
 		}
 
 		fml := models.FamilyList{
-			CSTID:      f.CstID,
+			CSTID:      saveCst.CstID,
 			FLRelation: f.FLRelation,
 			FLName:     f.FLName,
 			FLDOB:      fmlDOB,
