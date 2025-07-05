@@ -1,0 +1,815 @@
+{
+	"info": {
+		"_postman_id": "01c3ddc8-a2bc-401e-9aec-04b8dc14e80c",
+		"name": "achmadardian/test-booking",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21717304",
+		"_collection_link": "https://opinia-backend.postman.co/workspace/Team-Workspace~8c2b75a5-0927-4264-82f4-d89efdd09e25/collection/21717304-01c3ddc8-a2bc-401e-9aec-04b8dc14e80c?action=share&source=collection_link&creator=21717304"
+	},
+	"item": [
+		{
+			"name": "Nationality",
+			"item": [
+				{
+					"name": "Get All Nationality",
+					"item": [
+						{
+							"name": "Get All Nationality",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/nationalities",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"nationalities"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get All Nationality",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/nationalities",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"nationalities"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 05 Jul 2025 02:43:31 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "859"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"nationality_id\": 29,\n            \"nationality_name\": \"New Zealand\",\n            \"nationality_code\": \"NZ\"\n        },\n        {\n            \"nationality_id\": 28,\n            \"nationality_name\": \"Turkey\",\n            \"nationality_code\": \"TR\"\n        },\n        {\n            \"nationality_id\": 27,\n            \"nationality_name\": \"Spain\",\n            \"nationality_code\": \"ES\"\n        },\n        {\n            \"nationality_id\": 26,\n            \"nationality_name\": \"Italy\",\n            \"nationality_code\": \"IT\"\n        },\n        {\n            \"nationality_id\": 25,\n            \"nationality_name\": \"Sweden\",\n            \"nationality_code\": \"SE\"\n        },\n        {\n            \"nationality_id\": 24,\n            \"nationality_name\": \"Switzerland\",\n            \"nationality_code\": \"CH\"\n        },\n        {\n            \"nationality_id\": 23,\n            \"nationality_name\": \"Netherlands\",\n            \"nationality_code\": \"NL\"\n        },\n        {\n            \"nationality_id\": 22,\n            \"nationality_name\": \"United Arab Emirates\",\n            \"nationality_code\": \"AE\"\n        },\n        {\n            \"nationality_id\": 21,\n            \"nationality_name\": \"Saudi Arabia\",\n            \"nationality_code\": \"SA\"\n        },\n        {\n            \"nationality_id\": 20,\n            \"nationality_name\": \"Russia\",\n            \"nationality_code\": \"RU\"\n        }\n    ],\n    \"pagination\": {\n        \"page\": 1,\n        \"page_size\": 10,\n        \"has_next\": true\n    }\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Get All Customer",
+					"item": [
+						{
+							"name": "Get All Customer",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/customers",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"customers"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get All Customer",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/customers",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"customers"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 05 Jul 2025 02:44:01 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "716"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"cst_id\": 3,\n            \"cst_name\": \"Fulan\",\n            \"cst_dob\": \"2000-09-08\",\n            \"cst_phone_num\": \"08812731238\",\n            \"cst_email\": \"fulan@gmail.com\",\n            \"nationality\": {\n                \"nationality_id\": 1,\n                \"nationality_name\": \"Indonesia\",\n                \"nationality_code\": \"ID\"\n            }\n        },\n        {\n            \"cst_id\": 2,\n            \"cst_name\": \"John Doe\",\n            \"cst_dob\": \"2000-01-02\",\n            \"cst_phone_num\": \"0881712381\",\n            \"cst_email\": \"john@gmail.com\",\n            \"nationality\": {\n                \"nationality_id\": 2,\n                \"nationality_name\": \"United States\",\n                \"nationality_code\": \"US\"\n            }\n        },\n        {\n            \"cst_id\": 1,\n            \"cst_name\": \"Achmad Ardian\",\n            \"cst_dob\": \"2000-06-25\",\n            \"cst_phone_num\": \"08812632131\",\n            \"cst_email\": \"ardian@gmail.com\",\n            \"nationality\": {\n                \"nationality_id\": 1,\n                \"nationality_name\": \"Indonesia\",\n                \"nationality_code\": \"ID\"\n            }\n        }\n    ],\n    \"pagination\": {\n        \"page\": 1,\n        \"page_size\": 10,\n        \"has_next\": false\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Get Customer By ID",
+					"item": [
+						{
+							"name": "Get Customer By ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/customers/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"customers",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get Customer By ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/customers/1",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"customers",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 05 Jul 2025 02:44:26 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "243"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"cst_id\": 1,\n        \"cst_name\": \"Achmad Ardian\",\n        \"cst_dob\": \"2000-06-25\",\n        \"cst_phone_num\": \"08812632131\",\n        \"cst_email\": \"ardian@gmail.com\",\n        \"nationality\": {\n            \"nationality_id\": 1,\n            \"nationality_name\": \"Indonesia\",\n            \"nationality_code\": \"ID\"\n        }\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Create Customer",
+					"item": [
+						{
+							"name": "Create Customer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cst_name\": \"Steven\",\r\n    \"nationality_id\": 2,\r\n    \"cst_dob\": \"2002-01-12\",\r\n    \"cst_phone_num\": \"0981231\",\r\n    \"cst_email\": \"steven@gmail.com\",\r\n    \"families\": [\r\n        {\r\n            \"fl_name\": \"Richard\",\r\n            \"fl_relation\": \"father\",\r\n            \"fl_dob\": \"1982-01-02\"\r\n        },\r\n        {\r\n            \"fl_name\": \"Cacha\",\r\n            \"fl_relation\": \"mother\",\r\n            \"fl_dob\": \"1980-09-02\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/customers",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"customers"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create Customer",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"cst_name\": \"Steven\",\r\n    \"nationality_id\": 2,\r\n    \"cst_dob\": \"2002-01-12\",\r\n    \"cst_phone_num\": \"0981231\",\r\n    \"cst_email\": \"steven@gmail.com\",\r\n    \"families\": [\r\n        {\r\n            \"fl_name\": \"Richard\",\r\n            \"fl_relation\": \"father\",\r\n            \"fl_dob\": \"1982-01-02\"\r\n        },\r\n        {\r\n            \"fl_name\": \"Cacha\",\r\n            \"fl_relation\": \"mother\",\r\n            \"fl_dob\": \"1980-09-02\"\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/customers",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"customers"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 05 Jul 2025 02:50:40 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "408"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"created\",\n    \"data\": {\n        \"cst_id\": 4,\n        \"cst_name\": \"Steven\",\n        \"cst_dob\": \"2002-01-12\",\n        \"cst_phone_num\": \"0981231\",\n        \"cst_email\": \"steven@gmail.com\",\n        \"nationality\": {\n            \"nationality_id\": 0,\n            \"nationality_name\": \"\",\n            \"nationality_code\": \"\"\n        },\n        \"families\": [\n            {\n                \"fl_id\": 7,\n                \"cst_id\": 4,\n                \"fl_relation\": \"father\",\n                \"fl_name\": \"Richard\",\n                \"fl_Dob\": \"1982-01-02\"\n            },\n            {\n                \"fl_id\": 8,\n                \"cst_id\": 4,\n                \"fl_relation\": \"mother\",\n                \"fl_name\": \"Cacha\",\n                \"fl_Dob\": \"1980-09-02\"\n            }\n        ]\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Update Customer By ID",
+					"item": [
+						{
+							"name": "Update Customer By ID",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cst_name\": \"Steven And Coconut\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/customers/4",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"customers",
+										"4"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Update Customer By ID",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"cst_name\": \"Steven And Coconut\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/customers/4",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"customers",
+												"4"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 05 Jul 2025 02:51:24 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "248"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"updated\",\n    \"data\": {\n        \"cst_id\": 4,\n        \"cst_name\": \"Steven And Coconut\",\n        \"cst_dob\": \"2002-01-12\",\n        \"cst_phone_num\": \"0981231\",\n        \"cst_email\": \"steven@gmail.com\",\n        \"nationality\": {\n            \"nationality_id\": 2,\n            \"nationality_name\": \"United States\",\n            \"nationality_code\": \"US\"\n        }\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Delete Customer By ID",
+					"item": [
+						{
+							"name": "Delete Customer By ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"task\": \"build api\",\r\n    \"status\": \"progress\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/customers/3",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"customers",
+										"3"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Delete Customer By ID",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"task\": \"build api\",\r\n    \"status\": \"progress\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/customers/3",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"customers",
+												"3"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 05 Jul 2025 02:53:20 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "22"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"deleted\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Family List",
+			"item": [
+				{
+					"name": "Get All Family",
+					"item": [
+						{
+							"name": "Get All Family",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/families",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"families"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get All Family",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/families",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"families"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 05 Jul 2025 02:51:44 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "782"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"fl_id\": 1,\n            \"cst_id\": 1,\n            \"fl_relation\": \"brother\",\n            \"fl_name\": \"Fauzi\",\n            \"fl_Dob\": \"2008-01-02\"\n        },\n        {\n            \"fl_id\": 2,\n            \"cst_id\": 1,\n            \"fl_relation\": \"brother\",\n            \"fl_name\": \"Angga\",\n            \"fl_Dob\": \"2003-03-04\"\n        },\n        {\n            \"fl_id\": 3,\n            \"cst_id\": 2,\n            \"fl_relation\": \"father\",\n            \"fl_name\": \"John\",\n            \"fl_Dob\": \"1980-02-04\"\n        },\n        {\n            \"fl_id\": 4,\n            \"cst_id\": 2,\n            \"fl_relation\": \"mother\",\n            \"fl_name\": \"Rebecca\",\n            \"fl_Dob\": \"1980-04-29\"\n        },\n        {\n            \"fl_id\": 5,\n            \"cst_id\": 3,\n            \"fl_relation\": \"father\",\n            \"fl_name\": \"Fulan\",\n            \"fl_Dob\": \"1970-09-23\"\n        },\n        {\n            \"fl_id\": 6,\n            \"cst_id\": 3,\n            \"fl_relation\": \"sister\",\n            \"fl_name\": \"Fulanah\",\n            \"fl_Dob\": \"2002-01-02\"\n        },\n        {\n            \"fl_id\": 7,\n            \"cst_id\": 4,\n            \"fl_relation\": \"father\",\n            \"fl_name\": \"Richard\",\n            \"fl_Dob\": \"1982-01-02\"\n        },\n        {\n            \"fl_id\": 8,\n            \"cst_id\": 4,\n            \"fl_relation\": \"mother\",\n            \"fl_name\": \"Cacha\",\n            \"fl_Dob\": \"1980-09-02\"\n        }\n    ],\n    \"pagination\": {\n        \"page\": 1,\n        \"page_size\": 10,\n        \"has_next\": false\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Get Family By ID",
+					"item": [
+						{
+							"name": "Get Family By ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/families/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"families",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Get Family By ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/families/1",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"families",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 05 Jul 2025 02:51:57 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "116"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"success\",\n    \"data\": {\n        \"fl_id\": 1,\n        \"cst_id\": 1,\n        \"fl_relation\": \"brother\",\n        \"fl_name\": \"Fauzi\",\n        \"fl_Dob\": \"2008-01-02\"\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Create Family",
+					"item": [
+						{
+							"name": "Create Family",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cst_id\": 3,\r\n    \"fl_relation\": \"sister\",\r\n    \"fl_name\": \"Cindy\",\r\n    \"fl_dob\": \"2008-01-01\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/families",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"families"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create Family",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"cst_id\": 3,\r\n    \"fl_relation\": \"sister\",\r\n    \"fl_name\": \"Cindy\",\r\n    \"fl_dob\": \"2008-01-01\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/families",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"families"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 05 Jul 2025 02:52:22 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "115"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"created\",\n    \"data\": {\n        \"fl_id\": 9,\n        \"cst_id\": 3,\n        \"fl_relation\": \"sister\",\n        \"fl_name\": \"Cindy\",\n        \"fl_Dob\": \"2008-01-01\"\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Update Family By ID",
+					"item": [
+						{
+							"name": "Update Family By ID",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fl_name\": \"Cindy Gula\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/families/9",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"families",
+										"9"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Update Family By ID",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"fl_name\": \"Cindy Gula\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/families/9",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"families",
+												"9"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 05 Jul 2025 02:52:56 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "120"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"updated\",\n    \"data\": {\n        \"fl_id\": 9,\n        \"cst_id\": 3,\n        \"fl_relation\": \"sister\",\n        \"fl_name\": \"Cindy Gula\",\n        \"fl_Dob\": \"2008-01-01\"\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Delete Family By ID",
+					"item": [
+						{
+							"name": "Delete Family By ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"task\": \"build api\",\r\n    \"status\": \"progress\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/families/9",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"families",
+										"9"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Delete Family By ID",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"task\": \"build api\",\r\n    \"status\": \"progress\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/families/9",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"families",
+												"9"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 05 Jul 2025 02:53:08 GMT"
+										},
+										{
+											"key": "Content-Length",
+											"value": "22"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"deleted\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
